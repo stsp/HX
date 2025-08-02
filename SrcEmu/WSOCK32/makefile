@@ -1,6 +1,7 @@
 OWDIR = $(WATCOM)
 NAME = wsock32
-
+LIBOMF = .
+LIBCOFF = .
 ifneq ($(DEBUG),)
 OUTDIR=DEBUG
 COPTD=-D_DEBUG
@@ -31,8 +32,7 @@ a.lnk:
 	echo libpath $(OWDIR)/lib386/nt >>$@
 	echo libpath $(OWDIR)/lib386 >>$@
 	echo library clib3r.lib >>$@
-	echo library $(LIBOMF)/hxowdll.lib >>$@
-	echo library $(LIBCOFF)/dkrnl32.lib >>$@
+	echo library $(LIBCOFF)/DKRNL32.LIB >>$@
 ifneq ($(DEBUG),)
 	echo library $(LIBCOFF)/duser32.lib >>$@
 endif
