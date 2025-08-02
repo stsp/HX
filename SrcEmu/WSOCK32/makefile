@@ -18,16 +18,16 @@ CFLAGS = -mf -3r -zq -bt=dos -bm -bd -ox -Iinclude $(COPTD)
 LINK=wlink
 LIBRARY = lib $(WTLIB)
 
-ALL: $(OUTDIR) $(OUTDIR)/$(NAME).DLL
+all: $(OUTDIR) $(OUTDIR)/$(NAME).dll
 
 $(OUTDIR):
 	@mkdir $(OUTDIR)
 
-$(OUTDIR)/$(NAME).DLL: $(OUTDIR)/$(NAME).OBJ $(WTLIB) $(NAME).rsp a.lnk
-	$(LINK) format windows pe dll name $*.DLL op quiet, eliminate, map=$@, implib=$@ @a.lnk
+$(OUTDIR)/$(NAME).dll: $(OUTDIR)/$(NAME).obj $(WTLIB) $(NAME).rsp a.lnk
+	$(LINK) format windows pe dll name $@ op quiet, eliminate, map=$@, implib=$@ @a.lnk
 
 a.lnk:
-	echo file $(OUTDIR)/$(NAME).OBJ >>$@
+	echo file $(OUTDIR)/$(NAME).obj >>$@
 	echo libpath $(OWDIR)/lib386/nt >>$@
 	echo libpath $(OWDIR)/lib386 >>$@
 	echo library clib3r.lib >>$@
@@ -39,11 +39,12 @@ endif
 	echo $(LIBRARY) >>$@
 	echo @$(NAME).rsp >>$@
 
-$(OUTDIR)/$(NAME).OBJ: $(NAME).c makefile version.h
+$(OUTDIR)/$(NAME).obj: $(NAME).c makefile version.h
 	$(CC) $(CFLAGS) -fo=$@ $(NAME).c
 
 clean:
-	@$(RM) $(OUTDIR)/*.obj
-	@$(RM) $(OUTDIR)/*.dll
-	@$(RM) $(OUTDIR)/*.lib
-	@$(RM) $(OUTDIR)/*.lst
+	$(RM) $(OUTDIR)/*.obj
+	$(RM) $(OUTDIR)/*.dll
+	$(RM) $(OUTDIR)/*.lib
+	$(RM) $(OUTDIR)/*.lst
+	$(RM) a.lnk
