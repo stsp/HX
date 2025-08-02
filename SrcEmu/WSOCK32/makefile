@@ -25,7 +25,8 @@ $(OUTDIR):
 	@mkdir $(OUTDIR)
 
 $(OUTDIR)/$(NAME).dll: $(OUTDIR)/$(NAME).obj $(WTLIB) $(NAME).rsp a.lnk
-	$(LINK) format windows pe dll name $@ op quiet, eliminate, map=$@, implib=$@ @a.lnk
+	$(LINK) format windows pe dll name $@ op quiet, eliminate, map=$(dir $@)$(NAME).map, implib=$(dir $@)$(NAME).imp @a.lnk
+	chmod -x $@
 
 a.lnk:
 	echo file $(OUTDIR)/$(NAME).obj >>$@
