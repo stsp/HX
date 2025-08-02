@@ -2,16 +2,9 @@ OWDIR = $(WATCOM)
 NAME = wsock32
 LIBOMF = .
 LIBCOFF = .
-ifneq ($(DEBUG),)
-OUTDIR=DEBUG
-COPTD=-D_DEBUG
-#WTLIB=$(WATT32)/lib/wattcpwd.lib
-WTLIB=$(WATT32)/lib/wattcpwf.lib
-else
 OUTDIR=RELEASE
 COPTD=
-WTLIB=libcsock.lib
-endif
+WTLIB=w32/libcsock.lib
 
 CC = wcc386
 CFLAGS = -mf -3r -zq -bt=dos -bm -bd -ox -Iinclude $(COPTD)
