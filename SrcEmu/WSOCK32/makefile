@@ -29,7 +29,7 @@ $(OUTDIR)/$(NAME).dll: $(OUTDIR)/$(NAME).obj $(WTLIB) $(NAME).rsp a.lnk
 	chmod -x $@
 
 a.lnk:
-	echo file $(OUTDIR)/$(NAME).obj >>$@
+	echo file $(OUTDIR)/$(NAME).obj >$@
 	echo libpath $(OWDIR)/lib386/nt >>$@
 	echo libpath $(OWDIR)/lib386 >>$@
 	echo library clib3r.lib >>$@
