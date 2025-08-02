@@ -31,8 +31,6 @@ $(OUTDIR)/$(NAME).dll: $(OUTDIR)/$(NAME).obj $(WTLIB) $(NAME).rsp a.lnk
 a.lnk:
 	echo file $(OUTDIR)/$(NAME).obj >$@
 	echo libpath $(OWDIR)/lib386/nt >>$@
-	echo libpath $(OWDIR)/lib386 >>$@
-	echo library clib3r.lib >>$@
 	echo library $(LIBCOFF)/DKRNL32.LIB >>$@
 ifneq ($(DEBUG),)
 	echo library $(LIBCOFF)/duser32.lib >>$@
